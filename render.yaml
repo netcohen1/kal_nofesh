@@ -1,0 +1,26 @@
+# ============================================================
+# render.yaml – הגדרת פריסה ל-Render.com (Blueprint)
+# ============================================================
+# Render קורא את הקובץ הזה אוטומטית כשמחברים את הריפו.
+# יוצר שירות Web אחד (חינם) שמריץ את שרת ה-Express.
+# הנתונים נשמרים בריפו ב-GitHub (ענף "site-data") - בלי עלות,
+# ועם גישה ישירה לקבצים.
+# ============================================================
+
+services:
+  - type: web
+    name: kal-nofesh
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/public-data
+    envVars:
+      - key: ADMIN_PASSWORD
+        sync: false          # מזינים ידנית בלוח Render (סוד)
+      - key: SESSION_SECRET
+        generateValue: true  # Render ייצר מחרוזת אקראית בטוחה
+      - key: GITHUB_TOKEN
+        sync: false          # טוקן GitHub לשמירת נתונים (סוד)
+      - key: GITHUB_REPO
+        sync: false          # לדוגמה: your-username/kal-nofesh

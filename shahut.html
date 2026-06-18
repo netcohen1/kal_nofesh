@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>שהות · בתי נופש נבחרים בישראל</title>
+<meta name="description" content="אוסף קטן ונבחר של בתי נופש פרטיים בישראל — מהגליל ועד מכתש רמון. כל בית נבדק אישית לפני שהוא נכנס לאוסף." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&family=Suez+One&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   שהות — design tokens
+   identity: mid-century Israeli travel poster / screen-print
+   ============================================================ */
+:root{
+  --paper:#EBE0C8;        /* warm sand paper — page ground */
+  --paper-2:#F4ECD8;      /* lighter paper — cards */
+  --ink:#23211B;          /* warm near-black */
+  --ink-soft:#4F4A3D;     /* muted body ink */
+  --teal:#1E7A78;         /* the sea — lead colour */
+  --teal-deep:#13514F;    /* deep sea — section band */
+  --coral:#DC5A38;        /* persimmon — accent flat */
+  --coral-deep:#BD4528;
+  --gold:#E6AC36;         /* the sun */
+  --olive:#62702F;        /* palm / cypress */
+  --sky:#D7E4D6;          /* pale sky tint */
+  --sand:#D7B26B;         /* dune */
+  --line:#C7B790;         /* hairline on paper */
+
+  --font-display:"Suez One", Georgia, serif;
+  --font-body:"Heebo", system-ui, -apple-system, sans-serif;
+
+  --wrap:1220px;
+  --gut:clamp(20px, 5vw, 64px);
+
+  --r:4px;                /* crisp, printed corners — never pills */
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-weight:400;
+  font-size:1.0625rem;
+  line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+/* printed-paper grain over everything */
+body::after{
+  content:"";
+  position:fixed; inset:0;
+  pointer-events:none; z-index:9999;
+  mix-blend-mode:multiply; opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img,svg{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3{ margin:0; font-family:var(--font-display); font-weight:400; line-height:1.04; letter-spacing:-.01em; }
+p{ margin:0; }
+
+:focus-visible{ outline:2.5px solid var(--coral); outline-offset:3px; border-radius:2px; }
+
+.wrap{ width:100%; max-width:var(--wrap); margin-inline:auto; padding-inline:var(--gut); }
+
+/* ---------- shared bits ---------- */
+.eyebrow{
+  font-size:.72rem; font-weight:700; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--coral);
+  display:inline-flex; align-items:center; gap:.6em; margin:0 0 1.1rem;
+}
+.eyebrow::before{ content:""; width:26px; height:2px; background:var(--coral); display:inline-block; }
+.eyebrow--light{ color:var(--gold); }
+.eyebrow--light::before{ background:var(--gold); }
+
+.btn{
+  display:inline-flex; align-items:center; gap:.55em;
+  font-family:var(--font-body); font-weight:700; font-size:1rem;
+  padding:.85em 1.5em; border-radius:var(--r); border:2px solid var(--ink);
+  background:var(--ink); color:var(--paper); cursor:pointer;
+  transition:background .2s ease, color .2s ease, transform .2s ease;
+}
+.btn .arr{ transition:transform .2s ease; }
+.btn:hover{ background:var(--coral); border-color:var(--coral); color:#fff; }
+.btn:hover .arr{ transform:translateX(-4px); }
+.btn--ghost{ background:transparent; color:var(--ink); }
+.btn--ghost:hover{ background:var(--ink); border-color:var(--ink); color:var(--paper); }
+.btn--paper{ background:var(--paper-2); border-color:var(--paper-2); color:var(--ink); }
+.btn--paper:hover{ background:var(--ink); border-color:var(--ink); color:var(--paper-2); }
+
+.tlink{ position:relative; font-weight:700; }
+.tlink::after{
+  content:""; position:absolute; right:0; bottom:-3px; height:2px; width:100%;
+  background:var(--coral); transform:scaleX(0); transform-origin:right;
+  transition:transform .28s ease;
+}
+.tlink:hover::after{ transform:scaleX(1); }
+
+/* scroll reveal */
+.reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.is-in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){
+  .reveal{ opacity:1 !important; transform:none !important; transition:none; }
+}
+
+/* ============================================================
+   top strip
+   ============================================================ */
+.strip{
+  background:var(--ink); color:var(--paper);
+  font-size:.82rem; letter-spacing:.01em;
+}
+.strip__row{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:1rem; padding-block:.55rem; flex-wrap:wrap;
+}
+.strip__row span{ display:inline-flex; align-items:center; gap:.5em; }
+.strip .dot{ color:var(--gold); }
+.strip a{ font-weight:700; }
+.strip a:hover{ color:var(--gold); }
+
+/* ============================================================
+   header
+   ============================================================ */
+.head{
+  position:sticky; top:0; z-index:50;
+  background:color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter:saturate(140%) blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.head__row{ display:flex; align-items:center; justify-content:space-between; gap:1.5rem; padding-block:.85rem; }
+.brand{ display:inline-flex; align-items:center; gap:.6rem; }
+.brand__mark{ width:34px; height:34px; flex:none; }
+.brand__name{ font-family:var(--font-display); font-size:1.55rem; line-height:1; letter-spacing:.01em; }
+.brand__sub{ display:block; font-family:var(--font-body); font-size:.62rem; font-weight:700; letter-spacing:.18em; color:var(--ink-soft); margin-top:3px; }
+
+.nav{ display:flex; align-items:center; gap:1.8rem; }
+.nav a{ font-size:.98rem; font-weight:500; }
+.nav a.tlink{ font-weight:500; }
+.head__cta{ display:inline-flex; align-items:center; gap:1.2rem; }
+.head__cta .btn{ padding:.6em 1.15em; font-size:.92rem; }
+
+.burger{ display:none; background:none; border:0; cursor:pointer; padding:.4rem; }
+.burger span{ display:block; width:24px; height:2.5px; background:var(--ink); margin:5px 0; transition:.25s; }
+
+/* ============================================================
+   hero
+   ============================================================ */
+.hero{ padding-top:clamp(28px,5vw,56px); padding-bottom:clamp(28px,5vw,60px); }
+.hero__top{ max-width:740px; }
+.hero h1{ font-size:clamp(2.7rem, 7.5vw, 5.4rem); margin-bottom:1.1rem; }
+.hero h1 .em{ color:var(--coral); }
+.hero__lead{ font-size:clamp(1.05rem,2.2vw,1.28rem); color:var(--ink-soft); max-width:54ch; }
+
+.poster{
+  margin-top:clamp(26px,4vw,40px);
+  position:relative;
+  border:6px solid var(--ink);
+  border-radius:var(--r);
+  overflow:hidden;
+  background:var(--sky);
+  aspect-ratio:16/7.4;
+  box-shadow:14px 14px 0 rgba(35,33,27,.12);
+}
+.poster svg{ width:100%; height:100%; object-fit:cover; }
+.poster__tag{
+  position:absolute; top:18px; right:18px;
+  background:var(--paper-2); color:var(--ink);
+  font-weight:700; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase;
+  padding:.5em 1em; border-radius:2px; border:2px solid var(--ink);
+}
+
+/* booking bar */
+.book{
+  margin-top:-46px; position:relative; z-index:5;
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:var(--r);
+  box-shadow:8px 8px 0 rgba(35,33,27,.1);
+  display:grid; grid-template-columns:1.3fr 1fr 1fr auto; gap:0;
+  overflow:hidden;
+}
+.book__field{ padding:.95rem 1.2rem; border-inline-start:1px solid var(--line); display:flex; flex-direction:column; gap:.3rem; }
+.book__field:first-child{ border-inline-start:0; }
+.book__field label{ font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+.book__field select,
+.book__field input{
+  font-family:var(--font-body); font-size:1rem; font-weight:500; color:var(--ink);
+  border:0; background:transparent; padding:0; width:100%;
+}
+.book__field select{ cursor:pointer; }
+.stepper{ display:flex; align-items:center; gap:.85rem; }
+.stepper button{
+  width:28px; height:28px; border-radius:50%; border:1.5px solid var(--ink);
+  background:transparent; cursor:pointer; font-size:1.1rem; line-height:1;
+  display:grid; place-items:center; color:var(--ink); transition:.18s;
+}
+.stepper button:hover{ background:var(--ink); color:var(--paper); }
+.stepper output{ font-weight:700; min-width:1.4ch; text-align:center; }
+.book__go{
+  border:0; background:var(--coral); color:#fff; cursor:pointer;
+  font-family:var(--font-body); font-weight:700; font-size:1.02rem;
+  padding-inline:clamp(1.2rem,3vw,2.2rem); display:flex; align-items:center; gap:.5em;
+  transition:background .2s ease;
+}
+.book__go:hover{ background:var(--coral-deep); }
+.book__go .arr{ transition:transform .2s ease; }
+.book__go:hover .arr{ transform:translateX(-4px); }
+.book__note{ margin-top:.9rem; font-size:.85rem; color:var(--ink-soft); }
+.book__note b{ color:var(--teal); }
+
+/* ============================================================
+   intro / manifesto
+   ============================================================ */
+.intro{ padding-block:clamp(64px,9vw,120px); }
+.intro__grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(28px,5vw,72px); align-items:start; }
+.intro h2{ font-size:clamp(2rem,4.4vw,3.4rem); }
+.intro h2 .u{ color:var(--teal); }
+.intro__body p+p{ margin-top:1.15rem; }
+.intro__body{ color:var(--ink-soft); font-size:1.1rem; }
+.intro__body strong{ color:var(--ink); font-weight:700; }
+.intro__stats{ display:flex; gap:clamp(24px,4vw,56px); margin-top:2.2rem; flex-wrap:wrap; }
+.stat .n{ font-family:var(--font-display); font-size:2.4rem; color:var(--coral); line-height:1; }
+.stat .l{ font-size:.82rem; color:var(--ink-soft); font-weight:500; margin-top:.35rem; }
+
+/* ============================================================
+   listings
+   ============================================================ */
+.homes{ padding-bottom:clamp(64px,9vw,120px); }
+.sec-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; margin-bottom:clamp(28px,4vw,46px); flex-wrap:wrap; }
+.sec-head h2{ font-size:clamp(1.9rem,4vw,3rem); }
+.sec-head p{ color:var(--ink-soft); max-width:42ch; }
+
+/* the home of the month — wide editorial card */
+.feature{
+  display:grid; grid-template-columns:1.15fr .85fr; gap:0;
+  border:2px solid var(--ink); border-radius:var(--r); overflow:hidden;
+  background:var(--paper-2); margin-bottom:clamp(28px,4vw,44px);
+}
+.feature__poster{ position:relative; overflow:hidden; min-height:340px; background:var(--sky); }
+.feature__poster svg{ width:100%; height:100%; transition:transform .9s cubic-bezier(.2,.7,.2,1); }
+.feature:hover .feature__poster svg{ transform:scale(1.05); }
+.feature__price{
+  position:absolute; bottom:16px; inset-inline-start:16px;
+  background:var(--ink); color:var(--paper); font-weight:700; font-size:.92rem;
+  padding:.5em .9em; border-radius:2px;
+}
+.feature__body{ padding:clamp(26px,3vw,46px); display:flex; flex-direction:column; }
+.feature__region{ font-size:.78rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--teal); margin-bottom:.9rem; }
+.feature__body h3{ font-size:clamp(1.7rem,3vw,2.5rem); margin-bottom:.7rem; }
+.feature__desc{ color:var(--ink-soft); margin-bottom:1.3rem; }
+.feature__meta{ display:flex; flex-wrap:wrap; gap:.4rem 1.1rem; font-size:.92rem; color:var(--ink-soft); font-weight:500; margin-bottom:1.6rem; }
+.feature__meta span{ display:inline-flex; align-items:center; gap:.4em; }
+.feature__meta .d{ color:var(--coral); }
+.feature__foot{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-top:1.2rem; border-top:1px solid var(--line); flex-wrap:wrap; }
+.feature__foot .from{ font-size:.82rem; color:var(--ink-soft); }
+.feature__foot .from b{ font-family:var(--font-display); font-size:1.5rem; color:var(--ink); display:block; }
+
+/* grid of homes */
+.home-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(290px,1fr)); gap:clamp(20px,2.5vw,32px); }
+.card{
+  border:2px solid var(--ink); border-radius:var(--r); overflow:hidden;
+  background:var(--paper-2); display:flex; flex-direction:column;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.card:hover{ transform:translateY(-5px); box-shadow:8px 10px 0 rgba(35,33,27,.12); }
+.card__poster{ position:relative; overflow:hidden; aspect-ratio:4/3; background:var(--sky); border-bottom:2px solid var(--ink); }
+.card__poster svg{ width:100%; height:100%; transition:transform .8s cubic-bezier(.2,.7,.2,1); }
+.card:hover .card__poster svg{ transform:scale(1.06); }
+.card__price{
+  position:absolute; bottom:12px; inset-inline-start:12px;
+  background:var(--paper-2); color:var(--ink); font-weight:700; font-size:.84rem;
+  padding:.4em .75em; border-radius:2px; border:1.5px solid var(--ink);
+}
+.card__body{ padding:1.25rem 1.3rem 1.4rem; display:flex; flex-direction:column; flex:1; }
+.card__region{ font-size:.72rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--teal); margin-bottom:.55rem; }
+.card__name{ font-size:1.45rem; margin-bottom:.5rem; }
+.card__meta{ font-size:.9rem; color:var(--ink-soft); margin-bottom:1.1rem; }
+.card__foot{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; }
+.card__foot .more{ font-size:.88rem; font-weight:700; color:var(--coral); display:inline-flex; gap:.35em; align-items:center; }
+.card:hover .card__foot .more .arr{ transform:translateX(-4px); }
+.card__foot .more .arr{ transition:transform .2s ease; }
+.card__foot .stars{ font-size:.82rem; color:var(--ink-soft); }
+
+/* ============================================================
+   regions — deep teal band
+   ============================================================ */
+.regions{ background:var(--teal-deep); color:var(--paper); padding-block:clamp(64px,9vw,120px); position:relative; }
+.regions h2{ color:var(--paper); font-size:clamp(1.9rem,4vw,3rem); }
+.regions .sec-head p{ color:color-mix(in srgb, var(--paper) 80%, transparent); }
+.regions .eyebrow{ color:var(--gold); }
+.regions .eyebrow::before{ background:var(--gold); }
+.region-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:clamp(16px,2vw,24px); }
+.region{
+  border:2px solid var(--paper); border-radius:var(--r); overflow:hidden;
+  background:var(--teal); position:relative; display:block;
+  transition:transform .25s ease;
+}
+.region:hover{ transform:translateY(-5px); }
+.region__poster{ aspect-ratio:3/2.2; overflow:hidden; }
+.region__poster svg{ width:100%; height:100%; transition:transform .8s ease; }
+.region:hover .region__poster svg{ transform:scale(1.07); }
+.region__cap{ display:flex; align-items:baseline; justify-content:space-between; gap:.6rem; padding:.9rem 1.1rem; border-top:2px solid var(--paper); }
+.region__cap h3{ font-size:1.3rem; color:var(--paper); }
+.region__cap .c{ font-size:.8rem; font-weight:700; color:var(--gold); }
+
+/* ============================================================
+   included — what every home has
+   ============================================================ */
+.incl{ padding-block:clamp(64px,9vw,120px); }
+.incl__grid{ display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(32px,6vw,80px); align-items:start; }
+.incl h2{ font-size:clamp(1.9rem,4vw,3rem); }
+.incl__intro{ color:var(--ink-soft); margin-top:1.1rem; max-width:36ch; }
+.incl-list{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--line); }
+.incl-list li{
+  display:flex; gap:1rem; align-items:flex-start;
+  padding:1.4rem 0; border-bottom:1px solid var(--line);
+}
+.incl-list li:nth-child(odd){ padding-inline-end:1.6rem; }
+.incl-list li:nth-child(even){ padding-inline-start:1.6rem; border-inline-start:1px solid var(--line); }
+.incl-list .ic{ flex:none; width:38px; height:38px; }
+.incl-list h3{ font-family:var(--font-body); font-weight:700; font-size:1.05rem; line-height:1.3; margin-bottom:.25rem; }
+.incl-list p{ font-size:.9rem; color:var(--ink-soft); }
+
+/* ============================================================
+   quote — dark
+   ============================================================ */
+.quote{ background:var(--ink); color:var(--paper); padding-block:clamp(72px,10vw,140px); }
+.quote__inner{ max-width:880px; }
+.quote__mark{ font-family:var(--font-display); font-size:5rem; color:var(--gold); line-height:.6; height:.5em; display:block; }
+.quote blockquote{ margin:0; font-family:var(--font-display); font-size:clamp(1.6rem,3.6vw,2.8rem); line-height:1.25; }
+.quote blockquote .hl{ color:var(--gold); }
+.quote figcaption{ margin-top:1.8rem; display:flex; align-items:center; gap:.9rem; font-size:.95rem; }
+.quote figcaption .av{ width:42px; height:42px; border-radius:50%; background:var(--coral); display:grid; place-items:center; font-family:var(--font-display); color:#fff; font-size:1.1rem; flex:none; }
+.quote figcaption b{ font-weight:700; }
+.quote figcaption span{ color:color-mix(in srgb,var(--paper) 70%, transparent); }
+
+/* ============================================================
+   host CTA — coral band
+   ============================================================ */
+.host{ background:var(--coral); color:var(--ink); padding-block:clamp(56px,8vw,100px); }
+.host__inner{ display:grid; grid-template-columns:1.4fr .6fr; gap:clamp(24px,4vw,56px); align-items:center; }
+.host .eyebrow{ color:var(--ink); }
+.host .eyebrow::before{ background:var(--ink); }
+.host h2{ font-size:clamp(2rem,4.6vw,3.3rem); color:#2a140d; }
+.host p{ margin-top:1rem; max-width:46ch; color:#3a1c12; }
+.host__act{ display:flex; justify-content:flex-start; }
+.host .btn--paper{ font-size:1.05rem; padding:.95em 1.7em; }
+
+/* ============================================================
+   footer
+   ============================================================ */
+.foot{ background:var(--ink); color:var(--paper); padding-top:clamp(56px,8vw,90px); }
+.foot__top{ display:grid; grid-template-columns:1.6fr 1fr 1fr 1.3fr; gap:clamp(28px,4vw,56px); padding-bottom:clamp(40px,6vw,64px); }
+.foot__brand .brand__name{ color:var(--paper); }
+.foot__brand p{ color:color-mix(in srgb,var(--paper) 68%, transparent); margin-top:1.1rem; max-width:34ch; font-size:.95rem; }
+.foot__brand .mark-row{ display:flex; align-items:center; gap:.6rem; }
+.fcol h4{ font-family:var(--font-body); font-weight:700; font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin:0 0 1.1rem; }
+.fcol ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.7rem; }
+.fcol a{ color:color-mix(in srgb,var(--paper) 80%, transparent); font-size:.95rem; }
+.fcol a:hover{ color:var(--gold); }
+.news p{ color:color-mix(in srgb,var(--paper) 70%, transparent); font-size:.92rem; margin-bottom:1rem; }
+.news__form{ display:flex; border:2px solid color-mix(in srgb,var(--paper) 40%, transparent); border-radius:var(--r); overflow:hidden; }
+.news__form input{ flex:1; min-width:0; border:0; background:transparent; color:var(--paper); padding:.8rem 1rem; font-family:var(--font-body); font-size:.95rem; }
+.news__form input::placeholder{ color:color-mix(in srgb,var(--paper) 45%, transparent); }
+.news__form button{ border:0; background:var(--gold); color:var(--ink); font-family:var(--font-body); font-weight:700; padding-inline:1.2rem; cursor:pointer; transition:.2s; }
+.news__form button:hover{ background:var(--coral); color:#fff; }
+.foot__bar{ border-top:1px solid color-mix(in srgb,var(--paper) 18%, transparent); padding-block:1.6rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:.82rem; color:color-mix(in srgb,var(--paper) 60%, transparent); }
+.foot__bar a{ color:inherit; }
+.foot__bar a:hover{ color:var(--gold); }
+
+/* ============================================================
+   responsive
+   ============================================================ */
+@media (max-width: 980px){
+  .nav, .head__cta .btn{ display:none; }
+  .burger{ display:block; }
+  .nav.open{
+    display:flex; flex-direction:column; align-items:flex-start; gap:1.2rem;
+    position:absolute; top:100%; inset-inline:0; background:var(--paper);
+    border-bottom:1px solid var(--line); padding:1.5rem var(--gut);
+  }
+  .intro__grid, .incl__grid, .host__inner{ grid-template-columns:1fr; }
+  .feature{ grid-template-columns:1fr; }
+  .feature__poster{ min-height:260px; }
+  .foot__top{ grid-template-columns:1fr 1fr; }
+  .foot__brand{ grid-column:1 / -1; }
+}
+@media (max-width: 720px){
+  .book{ grid-template-columns:1fr 1fr; }
+  .book__go{ grid-column:1 / -1; justify-content:center; padding-block:1rem; }
+  .book__field:nth-child(3){ border-inline-start:0; }
+  .incl-list{ grid-template-columns:1fr; }
+  .incl-list li:nth-child(even){ padding-inline-start:0; border-inline-start:0; }
+  .incl-list li:nth-child(odd){ padding-inline-end:0; }
+}
+@media (max-width: 560px){
+  .strip__row{ justify-content:center; }
+  .book{ grid-template-columns:1fr; }
+  .book__field{ border-inline-start:0; border-top:1px solid var(--line); }
+  .book__field:first-child{ border-top:0; }
+  .foot__top{ grid-template-columns:1fr; }
+  .foot__bar{ flex-direction:column; align-items:flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== TOP STRIP ===================== -->
+<div class="strip">
+  <div class="wrap strip__row">
+    <span>כל בית באוסף נבדק ואושר על ידינו אישית <em class="dot">●</em> בלי כפילויות</span>
+    <span>להזמנות ושאלות: <a href="tel:*2014">חייגו ‎*2014</a></span>
+  </div>
+</div>
+
+<!-- ===================== HEADER ===================== -->
+<header class="head">
+  <div class="wrap head__row">
+    <a class="brand" href="#" aria-label="שהות — לעמוד הבית">
+      <svg class="brand__mark" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="48" fill="none" stroke="#23211B" stroke-width="3"/>
+        <circle cx="50" cy="54" r="20" fill="#E6AC36"/>
+        <g stroke="#23211B" stroke-width="3" stroke-linecap="round">
+          <line x1="50" y1="14" x2="50" y2="24"/>
+          <line x1="24" y1="24" x2="31" y2="31"/>
+          <line x1="76" y1="24" x2="69" y2="31"/>
+          <line x1="14" y1="54" x2="24" y2="54"/>
+          <line x1="86" y1="54" x2="76" y2="54"/>
+        </g>
+        <path d="M14 76 L40 76 M60 76 L86 76" stroke="#1E7A78" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <span>
+        <span class="brand__name">שָׁהוּת</span>
+        <span class="brand__sub">בתי נופש · מאז 2014</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav">
+      <a class="tlink" href="#homes">הבתים</a>
+      <a class="tlink" href="#regions">אזורים</a>
+      <a class="tlink" href="#incl">מה כלול</a>
+      <a class="tlink" href="#host">בעלי בתים</a>
+      <a class="tlink" href="#foot">יצירת קשר</a>
+    </nav>
+
+    <div class="head__cta">
+      <a class="tlink" href="tel:*2014" style="font-size:.95rem">‎*2014</a>
+      <a class="btn" href="#host">פרסמו בית <span class="arr">←</span></a>
+    </div>
+
+    <button class="burger" id="burger" aria-label="תפריט" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__top reveal">
+      <p class="eyebrow">אוסף 2026 · 47 בתים פרטיים</p>
+      <h1>מקום שמרגיש שלכם —<br><span class="em">מהרגע</span> שנכנסים.</h1>
+      <p class="hero__lead">אוסף קטן ונבחר של בתי נופש בישראל, מהגליל ועד מכתש רמון. כל בית כאן עבר אצלנו לילה לפחות — אז אנחנו יודעים בדיוק מה מחכה לכם.</p>
+    </div>
+
+    <!-- HERO POSTER: coastal sunrise -->
+    <div class="poster reveal" role="img" aria-label="איור בסגנון כרזת נסיעות וינטג׳: שמש זורחת מעל הים עם בית אבן וברוש">
+      <svg viewBox="0 0 1200 555" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <pattern id="halo" width="10" height="10" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1.5" fill="#23211B" opacity="0.16"/>
+          </pattern>
+        </defs>
+        <!-- sky -->
+        <rect width="1200" height="555" fill="#F1DEAE"/>
+        <rect width="1200" height="280" fill="#EBCB8A"/>
+        <!-- sun -->
+        <circle cx="820" cy="190" r="120" fill="#E6AC36"/>
+        <circle cx="820" cy="190" r="120" fill="url(#halo)"/>
+        <circle cx="820" cy="190" r="160" fill="none" stroke="#E6AC36" stroke-width="6" opacity="0.5"/>
+        <!-- distant hills -->
+        <path d="M0 300 Q300 250 620 300 T1200 290 V360 H0 Z" fill="#3E7B6E"/>
+        <!-- sea -->
+        <rect y="330" width="1200" height="225" fill="#1E7A78"/>
+        <g fill="#3C9290" opacity="0.7">
+          <path d="M0 380 q40 -10 80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 v12 H0 Z"/>
+          <path d="M0 430 q40 -10 80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 v12 H0 Z"/>
+        </g>
+        <!-- beach -->
+        <path d="M0 470 Q300 445 700 470 T1200 472 V555 H0 Z" fill="#D7B26B"/>
+        <path d="M0 470 Q300 445 700 470 T1200 472 V500 H0 Z" fill="#E0C083"/>
+        <!-- cypress left -->
+        <g transform="translate(120 250)">
+          <rect x="-4" y="120" width="8" height="40" fill="#5a3b27"/>
+          <path d="M0 -10 C26 60 22 110 0 130 C-22 110 -26 60 0 -10 Z" fill="#3a5a2c"/>
+        </g>
+        <!-- white arched house right -->
+        <g transform="translate(940 300)">
+          <rect x="0" y="0" width="170" height="150" fill="#F4ECD8"/>
+          <rect x="0" y="-6" width="170" height="14" fill="#DC5A38"/>
+          <path d="M28 150 V90 a26 26 0 0 1 52 0 V150 Z" fill="#1E7A78"/>
+          <rect x="106" y="40" width="40" height="40" fill="#E6AC36"/>
+          <line x1="126" y1="40" x2="126" y2="80" stroke="#F4ECD8" stroke-width="3"/>
+          <line x1="106" y1="60" x2="146" y2="60" stroke="#F4ECD8" stroke-width="3"/>
+        </g>
+        <!-- birds -->
+        <g stroke="#23211B" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7">
+          <path d="M250 120 q12 -12 24 0 q12 -12 24 0"/>
+          <path d="M320 150 q9 -9 18 0 q9 -9 18 0"/>
+        </g>
+      </svg>
+      <span class="poster__tag">ישראל · 2026</span>
+    </div>
+
+    <!-- BOOKING BAR -->
+    <form class="book reveal" id="bookForm">
+      <div class="book__field">
+        <label for="dest">לאן נוסעים</label>
+        <select id="dest">
+          <option>הגליל והגולן</option>
+          <option>הנגב והערבה</option>
+          <option>ים המלח</option>
+          <option>חוף הכרמל והשרון</option>
+          <option>ירושלים והרי יהודה</option>
+          <option>תל אביב–יפו</option>
+        </select>
+      </div>
+      <div class="book__field">
+        <label for="cin">תאריך הגעה</label>
+        <input type="date" id="cin" />
+      </div>
+      <div class="book__field">
+        <label>כמה אורחים</label>
+        <div class="stepper">
+          <button type="button" id="gMinus" aria-label="פחות אורחים">–</button>
+          <output id="gCount">2</output>
+          <button type="button" id="gPlus" aria-label="עוד אורחים">+</button>
+        </div>
+      </div>
+      <button class="book__go" type="submit">חיפוש בתים <span class="arr">←</span></button>
+    </form>
+    <p class="book__note">בדרך כלל יש לנו <b>9–12 בתים פנויים</b> בכל אזור לסוף שבוע הקרוב. ביטול חינם עד 14 יום לפני ההגעה.</p>
+  </div>
+</section>
+
+<!-- ===================== INTRO ===================== -->
+<section class="intro">
+  <div class="wrap intro__grid">
+    <div class="reveal">
+      <p class="eyebrow">מי אנחנו</p>
+      <h2>לא פלטפורמה.<br><span class="u">אוסף.</span></h2>
+    </div>
+    <div class="intro__body reveal">
+      <p>התחלנו ב־2014 עם שלושה בתים של חברים — בית אבן בפקיעין, דירה קטנה ביפו ובקתה אחת בגליל. לא רצינו עוד אתר עם אלף תוצאות שכולן נראות אותו דבר. רצינו רשימה קצרה של מקומות שבאמת היינו ממליצים עליהם להורים שלנו.</p>
+      <p>היום יש באוסף כמה עשרות בתים, וזה עדיין עובד אותו דבר: <strong>אנחנו ישנים בכל בית לפני שהוא מתפרסם.</strong> בודקים את הלחץ במקלחת, את הקפה בבוקר על המרפסת, את השקט בלילה. אם משהו לא מספיק טוב בשבילנו — הוא פשוט לא נכנס.</p>
+      <div class="intro__stats">
+        <div class="stat"><div class="n">47</div><div class="l">בתים באוסף</div></div>
+        <div class="stat"><div class="n">12</div><div class="l">שנים על המפה</div></div>
+        <div class="stat"><div class="n">4.9</div><div class="l">דירוג אורחים ממוצע</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LISTINGS ===================== -->
+<section class="homes" id="homes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">הבתים שלנו</p>
+        <h2>מקומות לישון בהם השבוע</h2>
+      </div>
+      <p>בחרנו עבורכם שישה בתים שאוהבים במיוחד כרגע — אחד מכל פינה של הארץ.</p>
+    </div>
+
+    <!-- FEATURE: home of the month -->
+    <article class="feature reveal">
+      <div class="feature__poster" role="img" aria-label="איור גבעות הגליל עם ברושים ובית אבן">
+        <svg viewBox="0 0 600 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="600" height="460" fill="#D8E3CC"/>
+          <circle cx="150" cy="120" r="62" fill="#E6AC36"/>
+          <path d="M0 250 Q150 200 320 240 T600 220 V460 H0Z" fill="#7d8a48"/>
+          <path d="M0 300 Q200 260 420 300 T600 285 V460 H0Z" fill="#62702F"/>
+          <path d="M0 360 Q160 330 360 360 T600 355 V460 H0Z" fill="#4d5826"/>
+          <!-- cypresses -->
+          <g transform="translate(420 210)">
+            <rect x="-3" y="80" width="6" height="30" fill="#3a2a1c"/>
+            <path d="M0 -6 C18 44 15 78 0 92 C-15 78 -18 44 0 -6Z" fill="#2f4a22"/>
+          </g>
+          <g transform="translate(470 230)">
+            <rect x="-3" y="70" width="6" height="26" fill="#3a2a1c"/>
+            <path d="M0 -4 C14 36 12 64 0 76 C-12 64 -14 36 0 -4Z" fill="#34522a"/>
+          </g>
+          <!-- stone house -->
+          <g transform="translate(120 250)">
+            <rect x="0" y="20" width="150" height="110" fill="#E9D9B8"/>
+            <path d="M-12 22 L75 -22 L162 22 Z" fill="#DC5A38"/>
+            <rect x="58" y="70" width="34" height="60" fill="#3a2a1c"/>
+            <rect x="20" y="48" width="26" height="26" fill="#1E7A78"/>
+            <rect x="104" y="48" width="26" height="26" fill="#1E7A78"/>
+          </g>
+        </svg>
+        <span class="feature__price">‎₪1,150 / לילה</span>
+      </div>
+      <div class="feature__body">
+        <p class="feature__region">הגליל העליון · פקיעין</p>
+        <h3>בית האבן הישן</h3>
+        <p class="feature__desc">בית אבן בן מאה שנה בלב הכפר, עם חצר סגורה, תאנה זקנה ומרפסת שמביטה אל ההר. שופץ בעדינות — קירות אבן חשופים, תקרת עץ ומטבח שבאמת אפשר לבשל בו.</p>
+        <div class="feature__meta">
+          <span><em class="d">●</em> עד 6 אורחים</span>
+          <span><em class="d">●</em> 3 חדרי שינה</span>
+          <span><em class="d">●</em> חצר ותנור חוץ</span>
+          <span><em class="d">●</em> חיות מחמד בברכה</span>
+        </div>
+        <div class="feature__foot">
+          <span class="from">החל מ־<b>‎₪1,150</b></span>
+          <a class="btn btn--ghost" href="#">לבית המלא <span class="arr">←</span></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- GRID -->
+    <div class="home-grid">
+
+      <!-- card: ראש פינה -->
+      <article class="card reveal">
+        <div class="card__poster" role="img" aria-label="איור גבעות בשעת בין ערביים">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="300" fill="#EBD0A6"/>
+            <rect width="400" height="160" fill="#E8C089"/>
+            <circle cx="300" cy="110" r="46" fill="#DC5A38"/>
+            <path d="M0 170 Q120 140 260 170 T400 160 V300 H0Z" fill="#7d8a48"/>
+            <path d="M0 220 Q140 195 300 220 T400 215 V300 H0Z" fill="#5a6a2d"/>
+            <g transform="translate(70 150)"><rect x="-3" y="60" width="6" height="24" fill="#3a2a1c"/><path d="M0 -4 C14 34 12 58 0 70 C-12 58 -14 34 0 -4Z" fill="#34522a"/></g>
+            <g transform="translate(110 168)"><rect x="-2" y="48" width="5" height="20" fill="#3a2a1c"/><path d="M0 -2 C11 26 9 46 0 56 C-9 46 -11 26 0 -2Z" fill="#2f4a22"/></g>
+          </svg>
+          <span class="card__price">‎₪890 / לילה</span>
+        </div>
+        <div class="card__body">
+          <p class="card__region">הגליל · ראש פינה</p>
+          <h3 class="card__name">המרפסת</h3>
+          <p class="card__meta">עד 4 אורחים · 2 חדרים · ג׳קוזי ונוף לחרמון</p>
+          <div class="card__foot">
+            <span class="stars">★ 4.9 · 38 ביקורות</span>
+            <a class="more" href="#">לפרטים <span class="arr">←</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- card: מצפה רמון -->
+      <article class="card reveal">
+        <div class="card__poster" role="img" aria-label="איור מדבר הנגב עם דיונות ושיטה">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="300" fill="#F0DCA8"/>
+            <circle cx="110" cy="90" r="50" fill="#E6AC36"/>
+            <path d="M260 110 h120 v50 h-120Z" fill="#C8632F"/>
+            <path d="M260 110 l30 -22 h90 v22Z" fill="#A94e24"/>
+            <path d="M0 180 Q120 150 260 185 T400 175 V300 H0Z" fill="#D7B26B"/>
+            <path d="M0 225 Q140 200 300 230 T400 225 V300 H0Z" fill="#C29A52"/>
+            <!-- acacia -->
+            <g transform="translate(120 175)">
+              <path d="M0 40 V0" stroke="#5a3b27" stroke-width="5"/>
+              <path d="M0 10 l-22 -8 M0 6 l22 -10" stroke="#5a3b27" stroke-width="4"/>
+              <ellipse cx="0" cy="-8" rx="42" ry="14" fill="#62702F"/>
+            </g>
+          </svg>
+          <span class="card__price">‎₪980 / לילה</span>
+        </div>
+        <div class="card__body">
+          <p class="card__region">הנגב · מצפה רמון</p>
+          <h3 class="card__name">חאן המכתש</h3>
+          <p class="card__meta">עד 5 אורחים · 2 חדרים · כיפת זכוכית לכוכבים</p>
+          <div class="card__foot">
+            <span class="stars">★ 5.0 · 51 ביקורות</span>
+            <a class="more" href="#">לפרטים <span class="arr">←</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- card: יפו -->
+      <article class="card reveal">
+        <div class="card__poster" role="img" aria-label="איור בית קשתות לבן ביפו מול הים">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="300" fill="#CFE0DA"/>
+            <circle cx="320" cy="80" r="40" fill="#E6AC36"/>
+            <rect y="150" width="400" height="150" fill="#1E7A78"/>
+            <path d="M0 175 q40 -8 80 0 t80 0 t80 0 t80 0 t80 0 v8 H0Z" fill="#3C9290"/>
+            <!-- white arched house -->
+            <g transform="translate(40 90)">
+              <rect x="0" y="0" width="200" height="120" fill="#F4ECD8"/>
+              <rect x="0" y="-8" width="200" height="12" fill="#DC5A38"/>
+              <path d="M20 120 V70 a22 22 0 0 1 44 0 V120Z" fill="#1E7A78"/>
+              <path d="M90 120 V70 a22 22 0 0 1 44 0 V120Z" fill="#1E7A78"/>
+              <rect x="160" y="40" width="30" height="30" fill="#E6AC36"/>
+              <circle cx="175" cy="-20" r="14" fill="#E6AC36"/>
+              <rect x="172" y="-34" width="6" height="14" fill="#E6AC36"/>
+            </g>
+          </svg>
+          <span class="card__price">‎₪1,420 / לילה</span>
+        </div>
+        <div class="card__body">
+          <p class="card__region">תל אביב–יפו · נמל יפו</p>
+          <h3 class="card__name">בית הקשתות</h3>
+          <p class="card__meta">עד 4 אורחים · 2 חדרים · גג עם נוף לים</p>
+          <div class="card__foot">
+            <span class="stars">★ 4.8 · 64 ביקורות</span>
+            <a class="more" href="#">לפרטים <span class="arr">←</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- card: עין בוקק -->
+      <article class="card reveal">
+        <div class="card__poster" role="img" aria-label="איור ים המלח עם הרים והרי מלח">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="300" fill="#EAE0CB"/>
+            <circle cx="90" cy="80" r="40" fill="#E6AC36" opacity="0.9"/>
+            <path d="M0 150 L120 90 L210 140 L320 95 L400 145 V170 H0Z" fill="#9A8BA0"/>
+            <path d="M0 165 L130 120 L260 160 L400 125 V175 H0Z" fill="#7E7390"/>
+            <rect y="170" width="400" height="130" fill="#56B0B2"/>
+            <path d="M0 195 q50 -6 100 0 t100 0 t100 0 t100 0 v8 H0Z" fill="#7FC9C9"/>
+            <!-- salt knobs -->
+            <g fill="#F4ECD8">
+              <ellipse cx="120" cy="230" rx="30" ry="12"/>
+              <ellipse cx="250" cy="245" rx="40" ry="15"/>
+              <ellipse cx="330" cy="225" rx="22" ry="9"/>
+            </g>
+          </svg>
+          <span class="card__price">‎₪1,090 / לילה</span>
+        </div>
+        <div class="card__body">
+          <p class="card__region">ים המלח · עין בוקק</p>
+          <h3 class="card__name">בית המלח</h3>
+          <p class="card__meta">עד 6 אורחים · 3 חדרים · בריכת מים מינרליים</p>
+          <div class="card__foot">
+            <span class="stars">★ 4.9 · 29 ביקורות</span>
+            <a class="more" href="#">לפרטים <span class="arr">←</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- card: עמיעד -->
+      <article class="card reveal">
+        <div class="card__poster" role="img" aria-label="איור מטע זיתים עם בקתת עץ">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="300" fill="#DBE3CB"/>
+            <circle cx="310" cy="85" r="44" fill="#E6AC36"/>
+            <path d="M0 165 Q150 135 280 165 T400 158 V300 H0Z" fill="#7d8a48"/>
+            <path d="M0 215 Q160 190 320 218 T400 212 V300 H0Z" fill="#5a6a2d"/>
+            <!-- olive trees (round) -->
+            <g transform="translate(70 170)"><rect x="-3" y="20" width="6" height="30" fill="#5a3b27"/><circle cx="0" cy="6" r="26" fill="#6f7e3f"/><circle cx="-16" cy="14" r="14" fill="#62702F"/><circle cx="16" cy="14" r="14" fill="#62702F"/></g>
+            <g transform="translate(150 185)"><rect x="-3" y="16" width="6" height="26" fill="#5a3b27"/><circle cx="0" cy="4" r="20" fill="#62702F"/></g>
+            <!-- cabin -->
+            <g transform="translate(250 150)">
+              <rect x="0" y="20" width="120" height="80" fill="#B5562F"/>
+              <path d="M-10 22 L60 -10 L130 22Z" fill="#8a3f22"/>
+              <rect x="44" y="55" width="28" height="45" fill="#3a2a1c"/>
+              <rect x="14" y="40" width="22" height="22" fill="#E6AC36"/>
+            </g>
+          </svg>
+          <span class="card__price">‎₪720 / לילה</span>
+        </div>
+        <div class="card__body">
+          <p class="card__region">הגליל התחתון · עמיעד</p>
+          <h3 class="card__name">הבקתה בין הזיתים</h3>
+          <p class="card__meta">זוגי · חדר אחד · אמבט חוץ ושקט מוחלט</p>
+          <div class="card__foot">
+            <span class="stars">★ 5.0 · 47 ביקורות</span>
+            <a class="more" href="#">לפרטים <span class="arr">←</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- card: ירושלים -->
+      <article class="card reveal">
+        <div class="card__poster" role="img" aria-label="איור גגות וכיפות ירושלים בין ברושים">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="300" fill="#EBD9B4"/>
+            <circle cx="80" cy="80" r="42" fill="#E6AC36"/>
+            <path d="M0 300 V200 H400 V300Z" fill="#D7B26B"/>
+            <!-- buildings -->
+            <g fill="#E9D9B8" stroke="#23211B" stroke-width="0">
+              <rect x="60" y="150" width="80" height="80"/>
+              <rect x="150" y="170" width="70" height="60"/>
+              <rect x="240" y="140" width="90" height="90"/>
+            </g>
+            <!-- arches -->
+            <g fill="#1E7A78">
+              <path d="M76 230 V195 a14 14 0 0 1 28 0 V230Z"/>
+              <path d="M270 230 V190 a16 16 0 0 1 32 0 V230Z"/>
+            </g>
+            <!-- dome -->
+            <path d="M160 150 a40 40 0 0 1 80 0Z" fill="#E6AC36"/>
+            <rect x="196" y="105" width="8" height="20" fill="#E6AC36"/>
+            <!-- cypress -->
+            <g transform="translate(350 150)"><rect x="-4" y="60" width="8" height="40" fill="#3a2a1c"/><path d="M0 -6 C18 50 15 80 0 96 C-15 80 -18 50 0 -6Z" fill="#2f4a22"/></g>
+          </svg>
+          <span class="card__price">‎₪1,260 / לילה</span>
+        </div>
+        <div class="card__body">
+          <p class="card__region">ירושלים · ימין משה</p>
+          <h3 class="card__name">בית הגג</h3>
+          <p class="card__meta">עד 4 אורחים · 2 חדרים · מרפסת מול חומות העיר</p>
+          <div class="card__foot">
+            <span class="stars">★ 4.9 · 42 ביקורות</span>
+            <a class="more" href="#">לפרטים <span class="arr">←</span></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REGIONS ===================== -->
+<section class="regions" id="regions">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow eyebrow--light">לפי אזור</p>
+        <h2>איפה בא לכם להיות?</h2>
+      </div>
+      <p>מצפון לדרום — כל אזור והאופי שלו. בחרו פינה, ואנחנו נראה לכם מה פנוי.</p>
+    </div>
+
+    <div class="region-grid">
+
+      <a class="region reveal" href="#homes">
+        <div class="region__poster">
+          <svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="300" height="200" fill="#D8E3CC"/>
+            <circle cx="60" cy="60" r="34" fill="#E6AC36"/>
+            <path d="M0 110 Q90 80 180 110 T300 100 V200 H0Z" fill="#7d8a48"/>
+            <path d="M0 150 Q100 125 220 150 T300 145 V200 H0Z" fill="#5a6a2d"/>
+            <g transform="translate(210 95)"><rect x="-3" y="40" width="6" height="22" fill="#3a2a1c"/><path d="M0 -4 C13 30 11 52 0 62 C-11 52 -13 30 0 -4Z" fill="#2f4a22"/></g>
+          </svg>
+        </div>
+        <div class="region__cap"><h3>הגליל והגולן</h3><span class="c">18 בתים</span></div>
+      </a>
+
+      <a class="region reveal" href="#homes">
+        <div class="region__poster">
+          <svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="300" height="200" fill="#F0DCA8"/>
+            <circle cx="80" cy="60" r="36" fill="#DC5A38"/>
+            <path d="M180 80 h120 v40 h-120Z" fill="#C8632F"/>
+            <path d="M0 120 Q90 95 180 122 T300 115 V200 H0Z" fill="#D7B26B"/>
+            <path d="M0 155 Q100 135 220 160 T300 155 V200 H0Z" fill="#C29A52"/>
+          </svg>
+        </div>
+        <div class="region__cap"><h3>הנגב והערבה</h3><span class="c">9 בתים</span></div>
+      </a>
+
+      <a class="region reveal" href="#homes">
+        <div class="region__poster">
+          <svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="300" height="200" fill="#EAE0CB"/>
+            <circle cx="240" cy="55" r="30" fill="#E6AC36"/>
+            <path d="M0 100 L90 60 L160 95 L240 60 L300 95 V120 H0Z" fill="#8E83A0"/>
+            <rect y="120" width="300" height="80" fill="#56B0B2"/>
+            <ellipse cx="100" cy="160" rx="28" ry="10" fill="#F4ECD8"/>
+            <ellipse cx="210" cy="170" rx="34" ry="12" fill="#F4ECD8"/>
+          </svg>
+        </div>
+        <div class="region__cap"><h3>ים המלח</h3><span class="c">5 בתים</span></div>
+      </a>
+
+      <a class="region reveal" href="#homes">
+        <div class="region__poster">
+          <svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="300" height="200" fill="#CFE0DA"/>
+            <circle cx="230" cy="55" r="34" fill="#E6AC36"/>
+            <rect y="105" width="300" height="95" fill="#1E7A78"/>
+            <path d="M0 125 q40 -8 80 0 t80 0 t80 0 t80 0 v8 H0Z" fill="#3C9290"/>
+            <path d="M0 165 Q90 150 180 168 T300 162 V200 H0Z" fill="#D7B26B"/>
+            <path d="M70 105 l24 -42 l24 42Z" fill="#F4ECD8"/>
+          </svg>
+        </div>
+        <div class="region__cap"><h3>חוף הכרמל</h3><span class="c">8 בתים</span></div>
+      </a>
+
+      <a class="region reveal" href="#homes">
+        <div class="region__poster">
+          <svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="300" height="200" fill="#EBD9B4"/>
+            <circle cx="60" cy="55" r="32" fill="#E6AC36"/>
+            <rect y="135" width="300" height="65" fill="#D7B26B"/>
+            <g fill="#E9D9B8"><rect x="50" y="95" width="60" height="50"/><rect x="180" y="90" width="70" height="55"/></g>
+            <path d="M120 95 a36 36 0 0 1 72 0Z" fill="#E6AC36"/>
+            <path d="M62 145 V120 a10 10 0 0 1 20 0 V145Z" fill="#1E7A78"/>
+            <path d="M200 145 V118 a12 12 0 0 1 24 0 V145Z" fill="#1E7A78"/>
+          </svg>
+        </div>
+        <div class="region__cap"><h3>ירושלים והרי יהודה</h3><span class="c">4 בתים</span></div>
+      </a>
+
+      <a class="region reveal" href="#homes">
+        <div class="region__poster">
+          <svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="300" height="200" fill="#EBCB8A"/>
+            <circle cx="240" cy="55" r="30" fill="#DC5A38"/>
+            <rect y="130" width="300" height="70" fill="#1E7A78"/>
+            <g fill="#23211B" opacity="0.85"><rect x="30" y="70" width="22" height="60"/><rect x="60" y="50" width="26" height="80"/><rect x="96" y="80" width="20" height="50"/><rect x="128" y="60" width="24" height="70"/></g>
+            <path d="M0 152 q30 -6 60 0 t60 0 t60 0 t60 0 v8 H0Z" fill="#3C9290"/>
+          </svg>
+        </div>
+        <div class="region__cap"><h3>תל אביב–יפו</h3><span class="c">3 בתים</span></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INCLUDED ===================== -->
+<section class="incl" id="incl">
+  <div class="wrap incl__grid">
+    <div class="reveal">
+      <p class="eyebrow">מה תמיד מחכה לכם</p>
+      <h2>אותו הסטנדרט, בכל בית</h2>
+      <p class="incl__intro">לא משנה אם הזמנתם בקתה זוגית או בית ל־8 — הדברים האלה תמצאו בכל מקום באוסף. בלי כוכביות קטנות.</p>
+    </div>
+
+    <ul class="incl-list reveal">
+      <li>
+        <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="20" width="36" height="16" rx="2" fill="none" stroke="#23211B" stroke-width="2.5"/><path d="M6 28 h36" stroke="#1E7A78" stroke-width="2.5"/><rect x="12" y="14" width="10" height="8" rx="2" fill="#DC5A38"/></svg>
+        <div><h3>מצעים ומגבות נקיים</h3><p>אנחנו מכבסים הכול בעצמנו בין אורח לאורח. גם מגבות לבריכה.</p></div>
+      </li>
+      <li>
+        <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="14" fill="none" stroke="#23211B" stroke-width="2.5"/><path d="M24 12 v12 l8 5" stroke="#1E7A78" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="24" cy="24" r="2.5" fill="#DC5A38"/></svg>
+        <div><h3>צ׳ק־אין בכל שעה</h3><p>קוד לכספת, ואתם נכנסים מתי שמתאים לכם. בלי לחכות למישהו עם מפתח.</p></div>
+      </li>
+      <li>
+        <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 24 a20 20 0 0 1 28 0" fill="none" stroke="#23211B" stroke-width="2.5"/><path d="M16 30 a12 12 0 0 1 16 0" fill="none" stroke="#1E7A78" stroke-width="2.5"/><circle cx="24" cy="36" r="3" fill="#DC5A38"/></svg>
+        <div><h3>אינטרנט מהיר באמת</h3><p>סיב אופטי בכל בית. אפשר לעבוד מהמרפסת אם בא לכם, ואפשר גם לא.</p></div>
+      </li>
+      <li>
+        <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle cx="19" cy="19" r="8" fill="none" stroke="#23211B" stroke-width="2.5"/><path d="M24 24 l12 12" stroke="#1E7A78" stroke-width="2.5" stroke-linecap="round"/><path d="M30 30 l3 -3 4 4 -3 3Z" fill="#DC5A38"/></svg>
+        <div><h3>מטבח מאובזר לארוחה</h3><p>סכינים שחותכים, סיר שאפשר לבשל בו, וקפה טוב לבוקר הראשון.</p></div>
+      </li>
+      <li>
+        <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M14 12 q-2 0 -2 2 v20 q0 2 2 2 l4 6 4 -6 h8 q2 0 2 -2 V14 q0 -2 -2 -2Z" fill="none" stroke="#23211B" stroke-width="2.5"/><circle cx="20" cy="24" r="2" fill="#1E7A78"/><circle cx="28" cy="24" r="2" fill="#DC5A38"/></svg>
+        <div><h3>בן אדם בטלפון, 24/7</h3><p>נתקע משהו? מתקשרים אלינו ואנחנו פותרים. לא בוט, לא טופס.</p></div>
+      </li>
+      <li>
+        <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="12" width="28" height="26" rx="2" fill="none" stroke="#23211B" stroke-width="2.5"/><path d="M10 20 h28" stroke="#23211B" stroke-width="2.5"/><path d="M17 10 v6 M31 10 v6" stroke="#1E7A78" stroke-width="2.5" stroke-linecap="round"/><path d="M18 28 l4 4 8 -8" stroke="#DC5A38" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+        <div><h3>ביטול חינם, באמת</h3><p>תוכניות משתנות. עד 14 יום לפני — מבטלים בלחיצה ומקבלים הכול בחזרה.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== QUOTE ===================== -->
+<section class="quote">
+  <div class="wrap quote__inner reveal">
+    <span class="quote__mark">”</span>
+    <blockquote>הגענו לשבת אחת ונשארנו עד יום שלישי. הבית היה בדיוק כמו בתמונות, <span class="hl">אולי אפילו יפה יותר.</span> כבר הזמנו את אותו מקום לפסח.</blockquote>
+    <figcaption>
+      <span class="av">מ</span>
+      <span><b>מיכל ועומר</b> · נופש בפקיעין, מרץ 2026</span>
+    </figcaption>
+  </div>
+</section>
+
+<!-- ===================== HOST CTA ===================== -->
+<section class="host" id="host">
+  <div class="wrap host__inner">
+    <div class="reveal">
+      <p class="eyebrow">בעלי בתים</p>
+      <h2>יש לכם בית שכדאי שנכיר?</h2>
+      <p>אנחנו מוסיפים לאוסף רק כמה בתים בשנה, בקפידה. אם יש לכם מקום מיוחד — בית, בקתה, דירה עם נשמה — נשמח שתספרו לנו עליו. נבוא לראות, וניצור לו דף שמכבד אותו.</p>
+    </div>
+    <div class="host__act reveal">
+      <a class="btn btn--paper" href="mailto:hello@shahut.co.il">ספרו לנו על הבית <span class="arr">←</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot" id="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <div class="foot__brand">
+        <div class="mark-row">
+          <svg class="brand__mark" viewBox="0 0 100 100" aria-hidden="true">
+            <circle cx="50" cy="50" r="48" fill="none" stroke="#EBE0C8" stroke-width="3"/>
+            <circle cx="50" cy="54" r="20" fill="#E6AC36"/>
+            <g stroke="#EBE0C8" stroke-width="3" stroke-linecap="round"><line x1="50" y1="14" x2="50" y2="24"/><line x1="24" y1="24" x2="31" y2="31"/><line x1="76" y1="24" x2="69" y2="31"/><line x1="14" y1="54" x2="24" y2="54"/><line x1="86" y1="54" x2="76" y2="54"/></g>
+            <path d="M14 76 L40 76 M60 76 L86 76" stroke="#1E7A78" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <span class="brand__name">שָׁהוּת</span>
+        </div>
+        <p>אוסף קטן של בתי נופש פרטיים בישראל. כל בית נבדק אישית, כל אורח מקבל בן אדם בטלפון. מאז 2014.</p>
+      </div>
+
+      <div class="fcol">
+        <h4>האוסף</h4>
+        <ul>
+          <li><a href="#homes">כל הבתים</a></li>
+          <li><a href="#regions">לפי אזור</a></li>
+          <li><a href="#">מתנה לזוג</a></li>
+          <li><a href="#">גיפט קארד</a></li>
+        </ul>
+      </div>
+
+      <div class="fcol">
+        <h4>מידע</h4>
+        <ul>
+          <li><a href="#">הסיפור שלנו</a></li>
+          <li><a href="#host">פרסום בית</a></li>
+          <li><a href="#">שאלות נפוצות</a></li>
+          <li><a href="#">תנאי הזמנה וביטול</a></li>
+        </ul>
+      </div>
+
+      <div class="fcol news">
+        <h4>נשארים בקשר</h4>
+        <p>בתים חדשים והצעות לסופי שבוע — מייל אחד בחודש, בלי ספאם.</p>
+        <form class="news__form" id="newsForm">
+          <input type="email" placeholder="כתובת המייל שלכם" aria-label="כתובת מייל" required />
+          <button type="submit">הצטרפות</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="foot__bar">
+      <span>© <span id="yr"></span> שהות בתי נופש · כל הזכויות שמורות · רישיון משרד התיירות 70-2014</span>
+      <span><a href="tel:*2014">‎*2014</a> · <a href="mailto:hello@shahut.co.il">hello@shahut.co.il</a> · א׳–ה׳ 9:00–18:00</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ----- mobile nav -----
+  var burger = document.getElementById('burger');
+  var nav = document.getElementById('nav');
+  burger.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){ nav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  });
+
+  // ----- guests stepper -----
+  var count = 2, out = document.getElementById('gCount');
+  document.getElementById('gPlus').addEventListener('click', function(){ if(count<16){count++; out.textContent=count;} });
+  document.getElementById('gMinus').addEventListener('click', function(){ if(count>1){count--; out.textContent=count;} });
+
+  // ----- search: scroll to listings (no fake results) -----
+  document.getElementById('bookForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('homes').scrollIntoView({behavior:'smooth'});
+  });
+  document.getElementById('newsForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var b = e.target.querySelector('button'); b.textContent = 'נרשמתם ✓';
+    e.target.querySelector('input').disabled = true;
+  });
+
+  // ----- year -----
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // ----- reveal on scroll -----
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+})();
+</script>
+</body>
+</html>
