@@ -397,19 +397,24 @@ app.post('/api/upload', guard(async (req, res) => {
   const isVideo = /^video\//.test(contentType);
   if (buf.length > (isVideo ? MAX_VID : MAX_IMG)) return fail(res, 413, 'too_large');
   const key = `${store.newId()}.${EXT[contentType]}`;
-  store.saveImage(key, buf, contentType);
+  await store.saveImage(key, buf, contentType);   // await - שהתמונה תישמר בגיטהאב לפני אישור
   noStore(res);
   res.json({ key, url: `/api/image?key=${encodeURIComponent(key)}`, contentType });
 }));
 
-app.get('/api/image', (req, res) => {
-  const key = req.query.key;
-  if (!key || /[^A-Za-z0-9._-]/.test(key)) return res.status(400).send('bad_key');
-  const blob = store.readImage(key);
-  if (!blob) return res.status(404).send('not_found');
-  res.set('content-type', blob.contentType);
-  res.set('cache-control', 'public, max-age=31536000, immutable');
-  res.send(blob.data);
+app.get('/api/image', async (req, res) => {
+  try {
+    const key = req.query.key;
+    if (!key || /[^A-Za-z0-9._-]/.test(key)) return res.status(400).send('bad_key');
+    const blob = await store.readImage(key);   // async - חובה await (כולל שליפה מגיטהאב)
+    if (!blob || !blob.data) return res.status(404).send('not_found');
+    res.set('content-type', blob.contentType || 'application/octet-stream');
+    res.set('cache-control', 'public, max-age=31536000, immutable');
+    res.send(blob.data);
+  } catch (e) {
+    console.error('image serve error:', e.message);
+    res.status(500).send('error');
+  }
 });
 
 // ============================================================
