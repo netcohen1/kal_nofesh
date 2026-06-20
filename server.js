@@ -416,7 +416,15 @@ app.get('/api/image', (req, res) => {
 // STATIC FILES (frontend)
 // ============================================================
 const ROOT = __dirname;
-app.use(express.static(ROOT, { extensions: ['html'] }));
+app.use(express.static(ROOT, {
+  extensions: ['html'],
+  setHeaders: (res, filePath) => {
+    // HTML/CSS/JS - תמיד לאמת מול השרת כדי שלא ייתקע cache ישן אחרי עדכון
+    if (/\.(html|css|js)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'no-cache');
+    }
+  }
+}));
 
 // כל שאר הנתיבים → index.html לא נדרש (אתר רב-עמודי), אבל ניתן fallback
 app.get('/', (req, res) => res.sendFile(path.join(ROOT, 'index.html')));

@@ -738,16 +738,20 @@
     host.innerHTML = images.map((img, i) => {
       const url = listing.imageUrl(img);
       const curCat = img.category_id || '';
+      const isVideo = /^video\//.test(img.contentType || '') || /\.(mp4|webm|mov)$/i.test(url || '');
+      const media = isVideo
+        ? `<video src="${e(url)}" muted playsinline preload="metadata"></video><span class="media-badge">סרטון</span>`
+        : `<img src="${e(url)}" alt="תמונה ${i + 1}" />`;
       return `
         <div class="img-cell" data-i="${i}">
-          ${i === 0 ? '<span class="main-flag">ראשית</span>' : ''}
-          <img src="${e(url)}" alt="תמונה ${i + 1}" />
+          ${i === 0 ? '<span class="main-flag">ראשי</span>' : ''}
+          ${media}
           <select class="img-cat" data-i="${i}" aria-label="קטגוריה">
             <option value="">כללי</option>
             ${cats.map((c) => `<option value="${e(c.id)}" ${curCat === c.id ? 'selected' : ''}>${e(c.name)}</option>`).join('')}
           </select>
           <div class="img-actions">
-            ${i !== 0 ? `<button type="button" data-act="setMain" data-i="${i}">ראשית</button>` : ''}
+            ${i !== 0 ? `<button type="button" data-act="setMain" data-i="${i}">הגדר כראשי</button>` : ''}
             <button type="button" class="danger" data-act="remove" data-i="${i}">הסר</button>
           </div>
         </div>
