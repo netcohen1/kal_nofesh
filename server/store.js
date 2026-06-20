@@ -221,13 +221,23 @@ async function readImage(key) {
     if (USE_GITHUB) {
       try {
         const file = await ghGetFile(`data/images/${key}`);
-        if (file && file.content) {
-          const buf = Buffer.from(file.content, 'base64');
-          fs.writeFileSync(f, buf);
-          const meta = await ghGetFile(`data/images/${key}.meta.json`);
-          if (meta && meta.content) fs.writeFileSync(imageMetaFile(key), Buffer.from(meta.content, 'base64'));
+        if (file) {
+          let buf = null;
+          if (file.content) {
+            // קבצים קטנים (<1MB) - התוכן מוחזר ישירות כ-base64
+            buf = Buffer.from(file.content, 'base64');
+          } else if (file.download_url) {
+            // קבצים גדולים (וידאו) - ה-API לא מחזיר תוכן, מורידים מהקישור הישיר
+            const dl = await fetch(file.download_url);
+            if (dl.ok) buf = Buffer.from(await dl.arrayBuffer());
+          }
+          if (buf && buf.length) {
+            fs.writeFileSync(f, buf);
+            const meta = await ghGetFile(`data/images/${key}.meta.json`);
+            if (meta && meta.content) fs.writeFileSync(imageMetaFile(key), Buffer.from(meta.content, 'base64'));
+          }
         }
-      } catch (e) { /* ignore */ }
+      } catch (e) { console.error('store: שליפת תמונה מגיטהאב נכשלה:', e.message); }
     }
     if (!fs.existsSync(f)) return null;
   }
