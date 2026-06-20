@@ -1,0 +1,138 @@
+[
+  {
+    "id": "mqmflvyk26tta7",
+    "name": "אחוזת אייקון",
+    "type_id": "mqmf6h5bc81p9i",
+    "region_id": "sharon",
+    "city_id": "mqmfd3kqf9mjk4",
+    "neighborhood": null,
+    "pricing_mode": "fixed",
+    "base_price": 3000,
+    "pricing_rules": [],
+    "rooms": 12,
+    "beds": 24,
+    "max_guests": 100,
+    "is_featured": true,
+    "description": "אחוזת אירוח יוקרתית\nאחוזת אירוח חדשה ומפוארת, המציעה חוויית אירוח בסטנדרטים הגבוהים ביותר. המתחם תוכנן בקפידה כדי לתת מענה מקיף לקבוצות, ומתאים במיוחד לאירוח של משפחות גדולות, שבתות חתן, ימי גיבוש ואירועי חברה.\n\nבמתחם האחוזה:\n\nסוויטות אירוח: 8 סוויטות פרטיות, מרווחות ומאובזרות, כאשר כל סוויטה כוללת חדר רחצה צמוד. בנוסף, קיים במתחם חדר אירוח נוסף.\n\nאולם אירועים: חלל התכנסות מפואר ורחב ידיים, המיועד לסעודות משותפות, כנסים ואירועים.\n\nבית כנסת: בית כנסת פרטי הכולל ספר תורה, לנוחותם המרבית של האורחים ושומרי המסורת.\n\nהאחוזה מספקת מעטפת אירוח שלמה, המשלבת יוקרה, מרחב ונוחות מקסימלית לכל מטרה.",
+    "images": [
+      {
+        "key": "mqmfjijm1kvw7m.mp4",
+        "url": "/api/image?key=mqmfjijm1kvw7m.mp4",
+        "contentType": "video/mp4",
+        "category_id": null
+      },
+      {
+        "key": "mqmfhbyi4di4fz.jpg",
+        "url": "/api/image?key=mqmfhbyi4di4fz.jpg",
+        "contentType": "image/jpeg",
+        "category_id": null
+      },
+      {
+        "key": "mqmfhcteopcse5.jpg",
+        "url": "/api/image?key=mqmfhcteopcse5.jpg",
+        "contentType": "image/jpeg",
+        "category_id": null
+      },
+      {
+        "key": "mqmfhdvxdf5kek.jpg",
+        "url": "/api/image?key=mqmfhdvxdf5kek.jpg",
+        "contentType": "image/jpeg",
+        "category_id": null
+      },
+      {
+        "key": "mqmfhgdz9ayhyc.jpg",
+        "url": "/api/image?key=mqmfhgdz9ayhyc.jpg",
+        "contentType": "image/jpeg",
+        "category_id": null
+      },
+      {
+        "key": "mqmfhhcv47c7vb.jpg",
+        "url": "/api/image?key=mqmfhhcv47c7vb.jpg",
+        "contentType": "image/jpeg",
+        "category_id": null
+      },
+      {
+        "key": "mqmfhj66ojaflc.jpg",
+        "url": "/api/image?key=mqmfhj66ojaflc.jpg",
+        "contentType": "image/jpeg",
+        "category_id": null
+      },
+      {
+        "key": "mqmfhl0smb3wjc.jpg",
+        "url": "/api/image?key=mqmfhl0smb3wjc.jpg",
+        "contentType": "image/jpeg",
+        "category_id": null
+      },
+      {
+        "key": "mqmfhm2zjk62dj.jpg",
+        "url": "/api/image?key=mqmfhm2zjk62dj.jpg",
+        "contentType": "image/jpeg",
+        "category_id": null
+      },
+      {
+        "key": "mqmfhnmluoz2lu.jpg",
+        "url": "/api/image?key=mqmfhnmluoz2lu.jpg",
+        "contentType": "image/jpeg",
+        "category_id": null
+      },
+      {
+        "key": "mqmfhoulp74m1w.jpg",
+        "url": "/api/image?key=mqmfhoulp74m1w.jpg",
+        "contentType": "image/jpeg",
+        "category_id": null
+      },
+      {
+        "key": "mqmfhpy7lbzz5l.jpg",
+        "url": "/api/image?key=mqmfhpy7lbzz5l.jpg",
+        "contentType": "image/jpeg",
+        "category_id": null
+      },
+      {
+        "key": "mqmfhsaqsi3juz.jpg",
+        "url": "/api/image?key=mqmfhsaqsi3juz.jpg",
+        "contentType": "image/jpeg",
+        "category_id": null
+      },
+      {
+        "key": "mqmfhsuo1g3bz5.jpg",
+        "url": "/api/image?key=mqmfhsuo1g3bz5.jpg",
+        "contentType": "image/jpeg",
+        "category_id": null
+      },
+      {
+        "key": "mqmfhuafs5qawx.jpg",
+        "url": "/api/image?key=mqmfhuafs5qawx.jpg",
+        "contentType": "image/jpeg",
+        "category_id": null
+      }
+    ],
+    "occupied_dates": [],
+    "services": [
+      "wifi",
+      "parking_many",
+      "ac",
+      "heating",
+      "linens",
+      "security",
+      "kitchen_full",
+      "dining_big",
+      "pool",
+      "jacuzzi",
+      "pool_table",
+      "yard_big",
+      "gated",
+      "event_space",
+      "dance_floor",
+      "pa_system",
+      "lighting",
+      "large_capacity",
+      "synagogue_in"
+    ],
+    "location_address": null,
+    "phone": "0534895782",
+    "whatsapp": "0534895782",
+    "status": "published",
+    "created_at": 1781964422156,
+    "updated_at": 1781964422157
+  }
+]
